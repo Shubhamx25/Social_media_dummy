@@ -15,6 +15,11 @@ import  { register } from "./controllers/auth.js";
 import { createPost } from "./controllers/post.js";
 import verifyToken from "./middleware/verifyToken.js";
 
+//importing dummy data to be added in Db only once
+/* import { users, posts } from "./data/data.js";
+import User from "./models/User.js";
+import postModel from "./models/Post.js"; */
+
 
 // Configurations and middlewares
 const __filename =  fileURLToPath(import.meta.url);
@@ -46,7 +51,7 @@ const upload = multer({storage});
 
 // register route
 app.post('/auth/register', upload.single('picture'), register );
-app.post('/posts', verifyToken, createPost);
+app.post('/posts', verifyToken,upload.single('picture'), createPost);
 
 // Routes 
 app.use('/auth',authRoutes);
@@ -60,6 +65,10 @@ mongoose.connect(process.env.MONGO_URL,{
 }).then(() => console.log('\n\n*******************DB Connected*************************'))
   .then(() => {
         app.listen(process.env.PORT, console.log(`listening to port ${process.env.PORT}`));
+
+        //Adding dummy data
+      /*   User.insertMany(users);
+        postModel.insertMany(posts); */
     })
   .catch((err) => {
         console.log("Database didn't connect: ",err);  
