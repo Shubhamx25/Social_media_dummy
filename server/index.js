@@ -9,7 +9,11 @@ import path from "path";
 import multer from "multer";
 import { fileURLToPath } from "url";
 import authRoutes from "./routes/authRoutes.js"; 
+import userRoutes from "./routes/userRoutes.js";
+import postRoutes from "./routes/postRoutes.js";
 import  { register } from "./controllers/auth.js";
+import { createPost } from "./controllers/post.js";
+import verifyToken from "./middleware/verifyToken.js";
 
 
 // Configurations and middlewares
@@ -38,15 +42,16 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({storage});
+const upload = multer({storage}); 
 
 // register route
 app.post('/auth/register', upload.single('picture'), register );
+app.post('/posts', verifyToken, createPost);
 
 // Routes 
 app.use('/auth',authRoutes);
-
-
+app.use('/users', userRoutes);
+app.use('/posts', postRoutes);
 
 // Connecting Database 
 mongoose.connect(process.env.MONGO_URL,{
