@@ -40,15 +40,55 @@ const Navbar = () => {
 
     const background = theme.palette.background.default;
     const primaryLight = theme.palette.primary.light;
-    const alt = theme.palette.background.alt;
+    const alt = theme.palette.background.alt; 
 
     const fullName = `${user.firstName} ${user.lastName}`
 
     return (
      <FlexBetween padding="1rem 6%" backgroundColor={alt}>
+
+
        <FlexBetween gap="1.75rem">
-        
+
+          <Typography fontWeight='bold' fontSize='clamp(1rem, 2rem, 2.25rem)' color='primary' onClick={() => navigate('/home')} sx={{
+            '&:hover':{
+              color: primaryLight,
+              cursor: 'pointer'
+            }
+          }}>
+             Sociopedia
+          </Typography>
+
+          {isNonMobileScreens && (
+            <FlexBetween backgroundColor={neutralLight} borderRadius='9px' gap='3rem' padding='0.1rem 1.5rem'>
+               <InputBase placeholder="search..."/>
+               <IconButton>
+                <Search />
+               </IconButton>
+            </FlexBetween>
+          )}
+
        </FlexBetween>
+
+
+       <FlexBetween>
+
+           {/*  Desktop Nav */}
+
+           {isNonMobileScreens ? 
+              (<FlexBetween gap='2rem'>
+                    <IconButton onClick={() => dispatch(setMode())}>
+                        {theme.palette.mode === 'dark' ?
+                          (<Darkmode sx={{fontSize: '25px'}} />) : 
+                          (<LightMode sx={{fontSize: '25px'}} />) 
+                        }
+                    </IconButton>
+               </FlexBetween>) :
+
+               (<IconButton></IconButton>)}
+
+       </FlexBetween>
+
 
      </FlexBetween>
     )
