@@ -74,7 +74,7 @@ const MyPostWidget = ({ picturePath }) => {
                     acceptedFiles = '.jpeg, .jpg, .png'
                     multiple = {false}
                     onDrop={(acceptedFiles) => {
-                      setImage (acceptedFiles[0])
+                      setImage(acceptedFiles[0])
                     }}
                   >
 
@@ -123,7 +123,7 @@ const MyPostWidget = ({ picturePath }) => {
 
      {/* Icons Below  */}
      <FlexBetween>
-        <FlexBetween gap='1.25rem' onClick={() => setImage(!isImage)}>
+        <FlexBetween gap='1.25rem' onClick={() => setIsImage(!isImage)}>
             <ImageOutlined sx={{color: mediumMain}} />
             <Typography
                 color = {mediumMain}
