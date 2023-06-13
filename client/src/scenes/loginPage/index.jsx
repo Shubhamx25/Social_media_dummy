@@ -13,9 +13,9 @@ const LoginPage = () => {
             
             <Typography fontWeight='bold' 
                         fontSize='32px' 
-                        color='primary' 
+                        color='primary'  
             >
-                Sociopedia
+              Sociopedia
             </Typography>
 
           </Box>
