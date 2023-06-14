@@ -34,7 +34,8 @@ const Friend = ({friendId, name, subtitle, userPicturePath}) => {
     }
     );
     const data = await response.json();
-    dispatch(setFriends({friends: data })); 
+    console.log(`Response from backend: ${JSON.stringify(data)}`);
+    dispatch(setFriends({friends: data})); 
   }
   
 
@@ -83,4 +84,4 @@ const Friend = ({friendId, name, subtitle, userPicturePath}) => {
   )
 }
 
-export default Friend
+export default Friend;
