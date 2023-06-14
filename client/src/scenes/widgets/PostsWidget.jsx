@@ -40,7 +40,24 @@ const PostsWidget = ({userId, isProfile = false}) => {
 
   return (
     <>
-      {posts.map()}
+      {posts.map(
+        ({_id, userId, firstName, lastName, occupation, location, description, picturePath, userPicturePath, likes,  comments}) => {
+          return(
+          <PostWidget 
+              key= {_id}
+              postId= {_id}                                           
+              postUserId= {userId}
+              name= {`${firstName} ${lastName}`}               
+              location= {location}
+              description= {description}
+              picturePath= {picturePath}
+              userPicturePath= {userPicturePath}
+              likes= {likes}
+              comments= {comments}
+           />
+          )
+        }
+      )}
     </>
   )
 }

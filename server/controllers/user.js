@@ -24,8 +24,8 @@ let getUserFriends = async (req, res) => {
         )
 
         const formattedFriends = friends.map(
-            ({_id, firstNmae, lastName, occupation, location, picturePath}) => {
-                return {_id, firstNmae, lastName, occupation, location, picturePath};
+            ({_id, firstName, lastName, occupation, location, picturePath}) => {
+                return {_id, firstName, lastName, occupation, location, picturePath};
             }
         )
 
@@ -54,9 +54,15 @@ let addRemoveFriend = async (req, res) => {
         await User.save();
         await friend.save();
 
-        const formattedFriends = friends.map(
-            ({_id, firstNmae, lastName, occupation, location, picturePath}) => {
-                return {_id, firstNmae, lastName, occupation, location, picturePath};
+        const friends = await Promise.all(
+            user.friends.map((id) => {
+                User.findById(id)
+            })
+        )
+
+        const formattedFriends = user.friends.map(
+            ({_id, firstName, lastName, occupation, location, picturePath}) => {
+                return {_id, firstName, lastName, occupation, location, picturePath};
             }
         )
 
