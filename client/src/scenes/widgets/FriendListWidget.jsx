@@ -13,10 +13,7 @@ const FriendListWidget = ({ userId }) => {
     const friends = useSelector((state) => state.user.friends);
     
     const {palette} = useTheme();
-    const primaryLight = palette.primary.light;
     const dark = palette.neutral.dark;
-    const main = palette.neutral.main;
-    const medium = palette.neutral.medium;
 
     const getFriends = async () => {
         const response = await fetch(
@@ -43,7 +40,7 @@ const FriendListWidget = ({ userId }) => {
         </Typography>
 
         <Box display='flex' flexDirection='column' gap='1.5rem'>
-            {friends.map((friend) => {
+            {friends.map((friend) => {return(
                 <Friend
                     key={friend._id}
                     friendId={friend._id}
@@ -52,7 +49,7 @@ const FriendListWidget = ({ userId }) => {
                     userPicturePath={friend.picturePath}
                 />
 
-            })}
+            )})}
         </Box>
 
     </WidgetWrapper>
