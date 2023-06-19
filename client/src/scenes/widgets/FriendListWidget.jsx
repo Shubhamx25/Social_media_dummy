@@ -11,20 +11,22 @@ const FriendListWidget = ({ userId }) => {
     const dispatch = useDispatch();
     const token = useSelector((state) => state.token);
     const friends = useSelector((state) => state.user.friends);
-    
+    /* const user = useSelector((state) => state.user); */
+    /*  console.log('Fetching user from redux: ',user); user is fetched with empty friends array */ 
     const {palette} = useTheme();
     const dark = palette.neutral.dark;
 
     const getFriends = async () => {
         const response = await fetch(
-            `http://localhost:3001/user/${userId}/friends`,
+            `http://localhost:3001/users/${userId}/friends`,
             {
                 method: 'GET',
                 headers: {Authorization: `Bearer ${token}`}
             }
         );
         const data = await response.json();
-        dispatch(setFriends({friends: data}));
+        // console.log('friend Data from DB: ',data.formattedFriends);  working
+        dispatch(setFriends({friends: data.formattedFriends}));
     }
 
     useEffect(() => {
@@ -40,7 +42,7 @@ const FriendListWidget = ({ userId }) => {
         </Typography>
 
         <Box display='flex' flexDirection='column' gap='1.5rem'>
-            {friends.map((friend) => {return(
+            {friends?.map((friend) => {return(
                 <Friend
                     key={friend._id}
                     friendId={friend._id}

@@ -43,7 +43,7 @@ const UserWidget = ({userId, picturePath}) => {
         return null;
     }
 
-    const { firstName, lastName, location, occupation, viewedProfile, impressions, friends} = user;
+    const { firstName, lastName, location, occupation, viewedProfile, impression, friends } = user;
     
     return (
         <WidgetWrapper>
@@ -97,7 +97,7 @@ const UserWidget = ({userId, picturePath}) => {
                 </FlexBetween>
                 <FlexBetween>
                 <Typography color={medium}>Impressions of your post</Typography>
-                <Typography color={main} fontWeight='500'>{impressions}</Typography>
+                <Typography color={main} fontWeight='500'>{impression}</Typography>
                 </FlexBetween>
             </Box>
             <Divider />

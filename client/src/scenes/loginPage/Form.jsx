@@ -85,7 +85,7 @@ const Form = () => {
     const loggedIn = await loggedInResponse.json();
     onSubmitProps.resetForm();
     if(loggedIn){
-      console.log('User logged in successful')
+      console.log('User logged in successful and data to be set in state:', loggedIn.user); 
       dispatch(
         setLogin({
           user: loggedIn.user,

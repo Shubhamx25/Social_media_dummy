@@ -34,7 +34,7 @@ const register = async (req, res) => {
             occupation,
             friends,
             viewedProfile: Math.floor(Math.random() * 10000),
-            impressions: Math.floor(Math.random() * 10000)
+            impression: Math.floor(Math.random() * 10000)
         });
 
         // saving it to db 
